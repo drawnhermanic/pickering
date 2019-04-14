@@ -44,12 +44,12 @@ steps:
   displayName: 'Install prerequisites'
 
 - script: |
-    pushd '$(projectRoot)'
+    cd src
     python manage.py test --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
   displayName: 'Run tests'
 
 - task: PublishTestResults@2
   inputs:
     testResultsFiles: "**/TEST-*.xml"
-    testRunTitle: 'Python $(PYTHON_VERSION)'
+    testRunTitle: '$(Agent.OS) - $(Build.BuildNumber)[$(Agent.JobName)] - Python $(python.version)'
   condition: succeededOrFailed()

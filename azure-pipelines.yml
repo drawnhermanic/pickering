@@ -32,16 +32,17 @@ jobs:
   - script: python -m pip install --upgrade pip && pip install -r pickering/requirements.txt
     displayName: 'Install dependencies'
 
-  - script: |
-      pip install pytest
-      pytest tests --doctest-modules --junitxml=junit/test-results.xml
-    displayName: 'pytest'
+    - script: |
+        pushd '$(projectRoot)'
+        python manage.py test --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
+      condition: succeededOrFailed()
+      displayName: 'Run tests'
 
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFiles: '**/test-results.xml'
-      testRunTitle: 'Python $(python.version)'
-    condition: succeededOrFailed()
+    - task: PublishTestResults@2
+      condition: succeededOrFailed()
+      inputs:
+        testResultsFiles: "**/TEST-*.xml"
+        testRunTitle: 'Python $(PYTHON_VERSION)'
 
 - job: 'Publish'
   dependsOn: 'Test'

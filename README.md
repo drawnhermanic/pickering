@@ -9,22 +9,26 @@ A website...
 
 Use python or python3 depending on the executable that has been installed
 
-1. Create a python virtual environment
-# macOS/Linux
+1. Navigate to src folder
+```
+cd src
+```
+2. Create a python virtual environment
+### macOS/Linux
 ```
 sudo apt-get install python3-venv    # If needed
 python3 -m venv env
 ```
-# Windows
+### Windows
 ```
 python -m venv env
 ```
-2. Active the environment
-# macOS/Linux
+2. Activate the environment
+### macOS/Linux
 ```
 source env/bin/activate
 ```
-# Windows
+### Windows
  ```
  env\scripts\activate
  ```
@@ -32,6 +36,7 @@ source env/bin/activate
 3. Restore packages
 
 ```
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
@@ -47,7 +52,7 @@ python manage.py migrate
 python manage.py createsuperuser --username=<username> --email=<email>
 ```
 
-You can access this admin page by browsing to http://127.0.0.1:8000/admin
+You can access the admin page by browsing to http://127.0.0.1:8000/admin
 
 ## Running the application
 
@@ -60,8 +65,8 @@ Choose a different port by using the following command
 python manage.py runserver 5000
 ```
 
-TBC
-Run static collected before deployment and copy files to...(azure storage)
+>TBC
+>Run static collected before deployment and copy files to...(azure storage)
 
 ```
 python manage.py collectstatic
@@ -72,7 +77,7 @@ python manage.py collectstatic
 Run the following command
 
 ```
-python manage.py collectstatic
+python manage.py test --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
 ```
 
 ## Packaging

@@ -6,6 +6,7 @@ A website...
 
 * Python 3.7.0
 * SQLite Browser (optional)
+* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) (for deployment)
 
 Use python or python3 depending on the executable that has been installed
 
@@ -88,9 +89,13 @@ python setup.py sdist
 
 ## Deployment
 
-Create azure web app and resource group
+Create azure web app and resource group, zip and deploy code
 ```
 az webapp up -n pickering -l uksouth --sku B1
+```
+
+Update site
+```
 az webapp update -n pickering
 az webapp show -n pickering
 ```

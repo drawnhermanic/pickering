@@ -1,0 +1,15 @@
+.ui-datepicker-inline {
+    display: block;
+}
+
+.booking-form__container label {
+    width: 100px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.booking-form__introduction,
+.booking-dates__container, 
+.booking-form__container {
+    padding-bottom: 20px;
+}

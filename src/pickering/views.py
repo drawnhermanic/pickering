@@ -1,4 +1,5 @@
 import re
+import uuid
 from datetime import datetime
 
 from django.shortcuts import render
@@ -8,6 +9,9 @@ from django.views.generic import ListView
 
 from pickering.forms import LogMessageForm
 from pickering.models import LogMessage
+
+from pickering.forms import BookingForm
+from pickering.models import Booking
 
 def hello_there(request, name):
     return render(
@@ -44,3 +48,19 @@ def log_message(request):
             return redirect("home")
     else:
         return render(request, "pickering/log_message.html", {"form": form})    
+
+def bookings(request):
+    form = BookingForm(request.POST or None)
+
+    if request.method == "POST":
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.request_date = datetime.now()
+            booking.approval_uuid = uuid.uuid4()
+            booking.approved = False
+            booking.approval_date = None
+            booking.save()
+            #todo - send approval email
+            return redirect("home")
+    else:
+        return render(request, "pickering/bookings.html", {"form": form})    

@@ -1,6 +1,7 @@
 from django.urls import path
 from pickering import views
 from pickering.models import LogMessage
+from pickering.models import Booking
 
 home_list_view = views.HomeListView.as_view(
     queryset=LogMessage.objects.order_by("-log_date")[:5],  # :5 limits the results to the five most recent
@@ -14,4 +15,5 @@ urlpatterns = [
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),
     path("log/", views.log_message, name="log"),
+    path("bookings/", views.bookings, name="bookings"),
 ]

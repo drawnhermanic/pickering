@@ -1,0 +1,31 @@
+{% extends "pickering/layout.html" %}
+{% block title %}
+    Bookings
+{% endblock %}
+{% block extra-header %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'pickering/css/bookings.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'pickering/js/frameworks/jquery-ui-1.12.1/jquery-ui.structure.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'pickering/js/frameworks/jquery-ui-1.12.1/jquery-ui.theme.min.css' %}"/>
+    <script type="text/javascript" src="{% static 'pickering/js/bookings.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pickering/js/frameworks/jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <form method="POST" class="booking-form">
+        <h1>Booking</h1>
+        <div class="booking-form__introduction">
+        Please use the form below to reserve the house. Requests will be sent to the man in charge (Dad) to approve (or reject). You’ll receive an email when approved.<br/><br/>
+        Select the dates required, enter your details and click send.
+        </div>
+        <div class="booking-dates__container">
+            <div type="text" class="booking-dates__datepicker" id="bookingDatePicker"></div>
+        </div>
+        <div class="booking-form__container">
+            {% csrf_token %}
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="save btn btn-default">Send</button>
+        <div class="booking-list__container">
+        </div>
+    </form>
+{% endblock %}

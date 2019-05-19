@@ -3,6 +3,7 @@ pickering/TEST*.xml
 
 # Visual Studio
 .vs/
+.vscode/settings.json
 
 # User-specific files
 *.suo
@@ -132,4 +133,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-.vscode/settings.json

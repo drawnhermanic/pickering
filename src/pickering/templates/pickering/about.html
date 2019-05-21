@@ -3,5 +3,23 @@
 About us 
 {% endblock %}
 {% block content %}
-<p>Pickering website about page.</p>
+<h2>Directions</h2>
+<h4>11 Burgate, Pickering, YO18 7AU</h4>
+
+<p>As you come from Malton at the first roundabout as you enter Pickering by the Forest and Vale Hotel, you turn Left, then after about 20 yds immediately Right, signposted Castle. Go up the road as it narrows, ( give way to oncoming traffic at the corner), then turn Right, before entering market street. Burgate is signposted the castle, but to park you want the rear of the house, so take the narrow road in front of Willowgate Bistro, which has a sign no entry apart for access. The parking for 11, Burgate is about 100 yds on the left, a small tarmac parking area off the road, which sometimes has a chain across it. ( Just unfasten at the end if up). Our parking is the half furthest up the road in front of the white electrical supply box. If relying on SatNav postcode for parking is YO18 7BE</p>
+
+<div id="map"></div>
+<!-- Replace the value of the key parameter with your own API key. -->
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLOq0KniyzZ3ECPMhLygYnwaYWKYglKcw&callback=initMap">
+</script>
+
+<script>
+// Initialize and add the map
+function initMap() {     
+  var elevenBurgate = {lat: 54.246516, lng: -0.776404};
+  var map = new google.maps.Map(document.getElementById('map'), {zoom: 15, center: elevenBurgate});
+  var marker = new google.maps.Marker({position: elevenBurgate, map: map});
+}
+</script>
 {% endblock %}
